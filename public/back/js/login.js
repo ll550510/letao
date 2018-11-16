@@ -39,7 +39,7 @@ $(function () {
                     notEmpty:{
                         message:"密码不能为空"
                     },
-                    stringLength:{
+                    notEmpty:{
                         min:6,
                         max:12,
                         message:"密码长度必须是6-12"
