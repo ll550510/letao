@@ -16,4 +16,49 @@ $( document ).ajaxStop(function() {
       NProgress.done();
   },500);
 
-});
+}); 
+
+// jquery入口函数
+
+$(function(){
+  // 1导航切换功能
+  // slideToggle切换
+
+  $('.category').click(function(){
+    $(this).next().stop().slideToggle();
+  });
+
+
+  // 2.左侧菜单切换功能
+
+  $('.lt_topbar .icon_left').click(function(){
+    // toggleClass 切换类名的意思
+    // hidemenu隐藏菜单 类名
+    $(".lt_aside").toggleClass("hidemenu");
+    $(".lt_main").toggleClass("hidemenu");
+    $(".lt_topbar").toggleClass("hidemenu");
+  })
+  // 3.退出功能
+  $(".lt_topbar .icon_right").click(function(){
+
+    // 点击按钮显示模态框
+     // $('#modal').modal("show") // 显示
+    // $('#modal').modal("hide") // 隐藏
+    $('#logoutModal').modal("show");
+  });
+  $('#logoutBtn').click(function() {
+    // 发送ajax请求
+    $.ajax({
+      type:"get",
+      url:"/employee/employeeLogout",
+      dataType:"json",
+      success:function(info){
+        console.log(info);
+        if(info.success){
+          location.href="login.html";
+        }
+      }
+    })
+  })
+
+})
